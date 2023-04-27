@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
-"""
-Function to anntoniate the arguments to get right results
-"""
-
-from typing import Any, List, Union
+"""Contains Augmented code with the correct duck-typed annotations."""
+from typing import Any, Union, Sequence
 
 
-def safe_first_element(lst: List[Any]) -> Union[Any, None]:
-    """
-    Duck-typed function that returns the first element of a sequence
-    """
+def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
+    """Return the first element of a list or None if the list is empty."""
     if lst:
         return lst[0]
     else:
