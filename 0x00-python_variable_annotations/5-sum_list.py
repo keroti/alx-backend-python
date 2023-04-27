@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-
+"""
+function for sum of a list
+"""
 from typing import List
 
 
