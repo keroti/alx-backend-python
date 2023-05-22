@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Unit tests for client.GithubOrgClient class.
+"""
 
 
 import unittest
@@ -8,16 +11,20 @@ from client import GithubOrgClient
 
 
 class TestGithubOrgClient(unittest.TestCase):
-    """ Test that json can be got """
+    """
+    TestGithubOrgClient class that inherits from unittest.TestCase.
+    """
 
     @parameterized.expand([
         ("google", {"google": True}),
         ("abc", {"abc": True})
     ])
     @patch('client.get_json')
-    def test_org(self, org, expected, get_patch):
-        """ Test the org of the client """
-        get_patch.return_value = expected
-        x = GithubOrgClient(org)
+    def test_org(self, org_name, expected, patch):
+        """
+        Test the org method of GithubOrgClient.
+        """
+        patch.return_value = expected
+        x = GithubOrgClient(org_name)
         self.assertEqual(x.org, expected)
-        get_patch.assert_called_once_with("https://api.github.com/orgs/"+org)
+        patch.assert_called_once_with("https://api.github.com/orgs/"+org_name)
