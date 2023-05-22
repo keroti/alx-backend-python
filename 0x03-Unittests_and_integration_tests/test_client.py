@@ -102,24 +102,31 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         """
         Test public repos
         """
-        self.mock_get.return_value.json.side_effect = [self.org_payload, self.repos_payload]
+        self.mock_get.return_value.json.side_effect = [
+            self.org_payload, self.repos_payload
+        ]
         client = GithubOrgClient("test")
         expected_result = ["repo1", "repo2"]
 
         result = client.public_repos()
 
         self.assertEqual(result, expected_result)
-        self.mock_get.assert_called_with("https://api.github.com/orgs/test/repos")
+        self.mock_get.assert_called_with(
+            "https://api.github.com/orgs/test/repos"
+        )
 
     def test_public_repos_with_license(self):
         """
         Test Public repos
         """
-        self.mock_get.return_value.json.side_effect = [self.org_payload, self.repos_payload]
+        self.mock_get.return_value.json.side_effect = [
+            self.org_payload, self.repos_payload
+        ]
         client = GithubOrgClient("test")
         expected_result = ["repo1"]
 
         result = client.public_repos("license_key")
 
         self.assertEqual(result, expected_result)
-        self.mock_get.assert_called_with("https://api.github.com/orgs/test/repos")
+        self.mock_get.assert_called_with(
+            "https://api.github.com/orgs/test/repos")
